@@ -33,9 +33,9 @@ size_t toss(size_t n)
     std::uniform_real_distribution<float> u(0, 1);
     for (size_t i{}; i < n; ++i)
     {
-        float x{u(rd)}, y{u(rd)}; // choose random x- and y-coordinates
-        if (x * x + y * y <= 1.0)        // is point in circle?
-            ++in;                        // increase counter
+        float x{u(rd)}, y{u(rd)};   // choose random x- and y-coordinates
+        if (x * x + y * y <= 1.0)   // is point in circle?
+            ++in;                   // increase counter
     }
     return in;
 }
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
     size_t n_tosses = process_cmdline(argc, argv);
     if (0 == n_tosses)
         return -1;
-    cout << "Sequential monte-carlo (one thread)\n";
+    cout << "Method: Sequential Monte-Carlo\n";
     cout << "Number of tosses: " << n_tosses << endl;
 
     // run the simulation and time it...

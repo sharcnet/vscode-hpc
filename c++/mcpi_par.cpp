@@ -69,8 +69,8 @@ int main(int argc, char* argv[])
     size_t n_tosses = process_cmdline(argc, argv);
     if (0 == n_tosses)
         return -1;
-    cout << "Parallel monte-carlo ("
-         << n_threads << " threads)\n";
+    cout << "Method: Parallel (OpenMP) Monte-Carlo -- "
+         << n_threads << " thread(s)\n";
     cout << "Number of tosses: " << n_tosses << endl;
 
     // run the simulation and time it...
