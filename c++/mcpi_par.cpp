@@ -31,14 +31,14 @@ size_t process_cmdline(int argc, char* argv[])
 size_t toss(size_t n)
 {
     size_t in{};
-    std::random_device rd;
+    std::random_device rx, ry;
     std::uniform_real_distribution<float> u(0, 1);
 
     // distribute workload over all processes and make a global reduction
     #pragma omp parallel for reduction(+ : in)
     for (size_t i = 0; i < n; ++i)
     {
-        const float x{u(rd)}, y{u(rd)}; // choose random x- and y-coords
+        const float x{u(rx)}, y{u(ry)};  // choose random x- and y-coords
         if (x * x + y * y <= 1.0)        // is point in circle?
             ++in;                        // increase counter
     }
