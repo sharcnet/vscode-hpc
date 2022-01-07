@@ -61,6 +61,6 @@ int main(int argc, char* argv[])
          << pi_estimate << endl;
     cout << "Error is: " << abs(pi_estimate - pi) << endl;
     cout << "Elapsed time: "
-         << chrono::duration_cast<chrono::seconds>(elapsed).count()
-         << " seconds" << endl;
+         << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
+         << " ms" << endl;
 }

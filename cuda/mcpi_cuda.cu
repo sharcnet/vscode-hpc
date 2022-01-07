@@ -48,19 +48,19 @@ __global__ void cuda_toss(size_t n, size_t* in)
     size_t rank = threadIdx.x;
     size_t size = blockDim.x;
 
-	// Initialize RNG
+    // Initialize RNG
     curandState_t rng;
-	curand_init(clock64(), threadIdx.x + blockIdx.x * blockDim.x, 0, &rng);
+    curand_init(clock64(), threadIdx.x + blockIdx.x * blockDim.x, 0, &rng);
 
-    in[rank] = 0;                       // local number of points in circle
-	for (size_t i = 0; i < n / size; ++i)
+    in[rank] = 0;                           // local number of points in circle
+    for (size_t i = 0; i < n / size; ++i)
     {
-		float x = curand_uniform(&rng);     // Random x position in [0,1]
-		float y = curand_uniform(&rng);     // Random y position in [0,1]
+        float x = curand_uniform(&rng);     // Random x position in [0,1]
+        float y = curand_uniform(&rng);     // Random y position in [0,1]
         // if (x * x + y * y <= 1)          // is point in circle?
         //     ++in[rank];                  // increase thread-local counter
         in[rank] += 1 - int(x * x + y * y); // no conditional version (faster)
-	}
+    }
 }
 
 int main(int argc, char* argv[])
@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
 
     // memory for thread local results
     size_t* in_device;
-    const size_t n_threads = 1024;
+    const size_t n_threads = 256;
     cudaMalloc(&in_device, n_threads * sizeof(size_t));
     cuda_error_check();
     // start parallel Monte Carlo
@@ -87,7 +87,8 @@ int main(int argc, char* argv[])
 
     // reducing...
     vector<size_t> in(n_threads);
-    cudaMemcpy(in.data(), in_device, n_threads * sizeof(size_t), cudaMemcpyDeviceToHost);
+    cudaMemcpy(in.data(), in_device, n_threads * sizeof(size_t),
+        cudaMemcpyDeviceToHost);
     cudaFree(in_device);
     size_t n_in_circle{0};
     for (size_t i{0}; i < n_threads; ++i)

@@ -36,7 +36,7 @@ size_t toss(size_t n)
 
     // distribute workload over all processes and make a global reduction
     #pragma omp parallel for reduction(+ : in)
-    for (size_t i = 0; i < n; ++i)
+    for (auto i = 0; i < n; ++i)
     {
         const float x{u(rx)}, y{u(ry)};  // choose random x- and y-coords
         if (x * x + y * y <= 1.0)        // is point in circle?
@@ -86,6 +86,6 @@ int main(int argc, char* argv[])
          << pi_estimate << endl;
     cout << "Error is: " << abs(pi_estimate - pi) << endl;
     cout << "Elapsed time: "
-         << chrono::duration_cast<chrono::seconds>(elapsed).count()
-         << " seconds" << endl;
+         << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
+         << " ms" << endl;
 }

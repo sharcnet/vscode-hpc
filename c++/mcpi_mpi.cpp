@@ -68,9 +68,11 @@ int main(int argc, char* argv[])
 
     timer::time_point start = timer::now();
     size_t n_partial = toss(n_tosses, size, rank);
-    // calculate sum of all local variables 'in' and storre result in 'in_all' on process 0
+    // calculate sum of all local variables 'in' and storre result
+    // in 'in_all' on process 0
     size_t n_in_circle;
-    MPI_Reduce(&n_partial, &n_in_circle, 1, MPI_UNSIGNED_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&n_partial, &n_in_circle, 1,
+        MPI_UNSIGNED_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
 
     // ouput the results
     if (0 == rank)
@@ -82,8 +84,8 @@ int main(int argc, char* argv[])
             << pi_estimate << endl;
         cout << "Error is: " << abs(pi_estimate - pi) << endl;
         cout << "Elapsed time: "
-            << chrono::duration_cast<chrono::seconds>(elapsed).count()
-            << " seconds" << endl;
+            << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
+            << " ms" << endl;
     }
 
     MPI_Finalize();  // quit MPI
