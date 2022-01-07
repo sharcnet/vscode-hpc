@@ -4,7 +4,8 @@ project(vscode-hpc CXX)
 
 add_subdirectory(c++)
 
-option(MCPI_ENABLE_CUDA "Enable CUDA" ON)
-if (MCPI_ENABLE_CUDA)
+include(CheckLanguage)
+check_language(CUDA)
+if (CMAKE_CUDA_COMPILER)
   add_subdirectory(cuda)
 endif ()

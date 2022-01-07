@@ -11,6 +11,22 @@ using namespace std;
 
 typedef chrono::high_resolution_clock timer;
 
+// check if there are any errors launching the kernel
+#define cuda_error_check() { cuda_assert(__FILE__, __LINE__); }
+inline void cuda_assert(const char *file, int line, bool abort = true)
+{
+    auto error = cudaGetLastError();
+    if (error != cudaSuccess)
+    {
+        cerr << "CUDA error: "
+             << cudaGetErrorString(error)
+             << " (" << error << ") -- "
+             << file << " -- line: "
+             << line << endl;
+        if (abort) exit(error);
+    }
+}
+
 // get input from the command line for total number of tosses
 size_t process_cmdline(int argc, char* argv[])
 {
@@ -26,20 +42,6 @@ size_t process_cmdline(int argc, char* argv[])
         return 10'000'000;
     else
         return atoll(argv[1]);
-}
-
-// check if there are any errors launching the kernel
-void cuda_error_check()
-{
-    auto error = cudaGetLastError();
-    if (error != cudaSuccess)
-    {
-        cerr << "CUDA error : "
-                << cudaGetErrorString(error)
-                << " (" << error << ")"
-                << endl;
-        exit(0);
-    }
 }
 
 // device kernel to perform Monte Carlo version of tossing darts at a board
@@ -65,8 +67,13 @@ __global__ void cuda_toss(size_t n, size_t* in)
 
 int main(int argc, char* argv[])
 {
+    // querying device properties
+    cudaDeviceProp prop;
+    cudaGetDeviceProperties(&prop, 0);
+    cuda_error_check();
+
     // set the number of threads
-    size_t n_threads = 256;
+    size_t n_threads = prop.maxThreadsPerBlock;
     if (3 == argc)
     {
         int n = atoi(argv[2]);
@@ -78,18 +85,14 @@ int main(int argc, char* argv[])
                  << endl;
             return -1;
         }
-        n_threads = n;
+        if (n < n_threads)
+            n_threads = n;
     }
-
 
     // read total number of tosses from the command line
     size_t n_tosses = process_cmdline(argc, argv);
     if (0 == n_tosses)
         return -1;
-
-    // querying device properties
-    cudaDeviceProp prop;
-    cudaGetDeviceProperties(&prop, 0);
 
     cout << "Monte-Carlo Pi Estimator\n"
          << "Method: CUDA (GPU) -- "
@@ -111,8 +114,12 @@ int main(int argc, char* argv[])
 
     // reducing...
     vector<size_t> in(n_threads);
-    cudaMemcpy(in.data(), in_device, n_threads * sizeof(size_t),
-        cudaMemcpyDeviceToHost);
+    cudaMemcpy( 
+        in.data()
+    ,   in_device
+    ,   n_threads * sizeof(size_t)
+    ,   cudaMemcpyDeviceToHost);
+    cuda_error_check();
     cudaFree(in_device);
     size_t n_in_circle{0};
     for (size_t i{0}; i < n_threads; ++i)
