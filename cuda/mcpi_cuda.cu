@@ -14,11 +14,11 @@ typedef chrono::high_resolution_clock timer;
 // get input from the command line for total number of tosses
 size_t process_cmdline(int argc, char* argv[])
 {
-    if (argc > 2)
+    if (argc > 4)
     {
         cout << "Usage: "
              << argv[0]
-             << " [number of tosses]"
+             << " [number of tosses] [number of threads]"
              << endl;
         return 0;
     }
@@ -65,12 +65,30 @@ __global__ void cuda_toss(size_t n, size_t* in)
 
 int main(int argc, char* argv[])
 {
+    // set the number of threads
+    size_t n_threads = 256;
+    if (3 == argc)
+    {
+        int n = atoi(argv[2]);
+        if (0 == n)
+        {
+            cout << "Usage: "
+                 << argv[0]
+                 << " [number of tosses] [number of threads]"
+                 << endl;
+            return -1;
+        }
+        n_threads = n;
+    }
+
     // read total number of tosses from the command line
     size_t n_tosses = process_cmdline(argc, argv);
     if (0 == n_tosses)
         return -1;
-    cout << "Method: CUDA Monte-Carlo\n";
-    cout << "Number of tosses: " << n_tosses << endl;
+    cout << "Monte-Carlo Pi Estimator\n"
+         << "Method: CUDA (GPU) -- "
+         << n_threads << " thread(s)\n"
+         << "Number of tosses: " << n_tosses << endl;
 
     // run the simulation and time it...
     //------> start timer
@@ -78,7 +96,6 @@ int main(int argc, char* argv[])
 
     // memory for thread local results
     size_t* in_device;
-    const size_t n_threads = 256;
     cudaMalloc(&in_device, n_threads * sizeof(size_t));
     cuda_error_check();
     // start parallel Monte Carlo
@@ -101,9 +118,10 @@ int main(int argc, char* argv[])
     const long double pi = 3.141592653589793238462643L; // 25-digit Pi
     long double pi_estimate = 4.0L * n_in_circle / n_tosses;
     cout << "Estimated Pi: " << fixed << setw(17) << setprecision(15)
-         << pi_estimate << endl;
-    cout << "Error is: " << abs(pi_estimate - pi) << endl;
-    cout << "Elapsed time: "
+         << pi_estimate << endl
+         << "Percent error: " << setprecision(3)
+         << abs(pi_estimate - pi) / pi * 100.0 << '%' << endl
+         << "Elapsed time: "
          << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
          << " ms" << endl;
 }
