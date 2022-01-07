@@ -81,14 +81,21 @@ int main(int argc, char* argv[])
         n_threads = n;
     }
 
+
     // read total number of tosses from the command line
     size_t n_tosses = process_cmdline(argc, argv);
     if (0 == n_tosses)
         return -1;
+
+    // querying device properties
+    cudaDeviceProp prop;
+    cudaGetDeviceProperties(&prop, 0);
+
     cout << "Monte-Carlo Pi Estimator\n"
          << "Method: CUDA (GPU) -- "
          << n_threads << " thread(s)\n"
-         << "Number of tosses: " << n_tosses << endl;
+         << "Device name: " << prop.name
+         << "\nNumber of tosses: " << n_tosses << endl;
 
     // run the simulation and time it...
     //------> start timer
