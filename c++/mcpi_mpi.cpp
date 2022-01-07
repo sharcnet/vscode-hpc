@@ -58,11 +58,10 @@ int main(int argc, char* argv[])
         return -1;
 
     if (0 == rank)
-    {
-        cout << "Method: MPI Monte-Carlo -- "
-             << size << " process(es)\n";
-        cout << "Number of tosses: " << n_tosses << endl;
-    }
+        cout << "Monte-Carlo Pi Estimator\n"
+             << "Method: MPI -- "
+             << size << " process(es)\n"
+             << "Number of tosses: " << n_tosses << endl;
 
     // run the simulation and time it...
 
@@ -81,11 +80,12 @@ int main(int argc, char* argv[])
         const long double pi = 3.141592653589793238462643L; // 25-digit Pi
         long double pi_estimate = 4.0L * n_in_circle / n_tosses;
         cout << "Estimated Pi: " << fixed << setw(17) << setprecision(15)
-            << pi_estimate << endl;
-        cout << "Error is: " << abs(pi_estimate - pi) << endl;
+             << pi_estimate << endl;
+        cout << "Percent error: " << setprecision(3)
+             << abs(pi_estimate - pi) / pi * 100.0 << '%' << endl;
         cout << "Elapsed time: "
-            << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
-            << " ms" << endl;
+             << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
+             << " ms" << endl;
     }
 
     MPI_Finalize();  // quit MPI

@@ -46,8 +46,9 @@ int main(int argc, char* argv[])
     size_t n_tosses = process_cmdline(argc, argv);
     if (0 == n_tosses)
         return -1;
-    cout << "Method: Sequential Monte-Carlo\n";
-    cout << "Number of tosses: " << n_tosses << endl;
+    cout << "Monte-Carlo Pi Estimator\n"
+         << "Method: Sequential\n"
+         << "Number of tosses: " << n_tosses << endl;
 
     // run the simulation and time it...
     timer::time_point start = timer::now();
@@ -58,9 +59,10 @@ int main(int argc, char* argv[])
     const long double pi = 3.141592653589793238462643L; // 25-digit Pi
     long double pi_estimate = 4.0L * n_in_circle / n_tosses;
     cout << "Estimated Pi: " << fixed << setw(17) << setprecision(15)
-         << pi_estimate << endl;
-    cout << "Error is: " << abs(pi_estimate - pi) << endl;
-    cout << "Elapsed time: "
+         << pi_estimate << endl
+         << "Percent error: " << setprecision(3)
+         << abs(pi_estimate - pi) / pi * 100.0 << '%' << endl
+         << "Elapsed time: "
          << chrono::duration_cast<chrono::milliseconds>(elapsed).count()
          << " ms" << endl;
 }
