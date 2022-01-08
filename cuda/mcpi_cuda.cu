@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     cuda_error_check();
 
     // set the number of threads
-    size_t n_threads = prop.maxThreadsPerBlock;
+    size_t n_threads = 128;
     if (3 == argc)
     {
         int n = atoi(argv[2]);
@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
                  << endl;
             return -1;
         }
-        if (n < n_threads)
+        if (n <= prop.maxThreadsPerBlock)
             n_threads = n;
     }
 
