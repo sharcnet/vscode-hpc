@@ -36,7 +36,7 @@ size_t toss(size_t n)
 
     // distribute workload over all processes and make a global reduction
     #pragma omp parallel for reduction(+ : in)
-    for (auto i = 0; i < n; ++i)
+    for (int i = 0; i < int(n); ++i)
     {
         const float x{u(rx)}, y{u(ry)};  // choose random x- and y-coords
         if (x * x + y * y <= 1.0)        // is point in circle?
