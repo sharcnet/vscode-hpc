@@ -1,11 +1,9 @@
 # check/add compiler OpenMP support flags
-find_package(OpenMP)
-find_package(MPI)
-
 add_executable(mcpi-seq mcpi-seq.cpp)
 target_compile_features(mcpi-seq PRIVATE cxx_std_11)
 install(TARGETS mcpi-seq RUNTIME DESTINATION bin COMPONENT mcpi-seq)
 
+find_package(OpenMP)
 if (OpenMP_FOUND)
   add_executable(mcpi-par mcpi-par.cpp)
   target_compile_features(mcpi-par PRIVATE cxx_std_11)
@@ -13,6 +11,7 @@ if (OpenMP_FOUND)
   install(TARGETS mcpi-par RUNTIME DESTINATION bin COMPONENT mcpi-par)
 endif ()
 
+find_package(MPI)
 if (MPI_FOUND)
   add_executable(mcpi-mpi mcpi-mpi.cpp)
   target_compile_features(mcpi-mpi PRIVATE cxx_std_11)
