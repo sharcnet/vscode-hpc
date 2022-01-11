@@ -3,7 +3,7 @@ This is a sample code accompanying SHARCNET General Interest Seminar entitled: *
 
 ## Prerequisites
 
-* [Visual Studio Code](https://code.visualstudio.com/) on the system that you work with your projects along with the following extensions:
+* [Visual Studio Code](https://code.visualstudio.com/) on the system that you work on it along with the following extensions:
     - [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack)
     - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
     - [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
@@ -12,7 +12,7 @@ This is a sample code accompanying SHARCNET General Interest Seminar entitled: *
     - [GitHub Pull Requests and Issues](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) (*optional*)
     - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) (*optional*)
 
-And the followings on the platform that you want to do either *local* or *remote* development:
+And the followings on the platform(s) that you want to do either *local* or *remote* development:
 ### Compute Canada Clusters
 For remote development on *Compute Canada* clusters, the following ```module``` command will do the trick but often you have to add it at the end of your ```~/.bashrc``` file:
 
@@ -47,4 +47,4 @@ On Windows systems, if you want to do both local development on *Windows* and re
 * [CUDA toolkit](https://developer.nvidia.com/nvidia-cuda-toolkit-developer-tools-mac-hosts) for *macOS*
 
 ## Get started
-Just run *VSCode* on the system that you work with your projects then select ```Clone Git Repository...``` from ```Get Started``` page or type ```git: clone``` in the *command palette* (```CTRL+SHIFT+p``` or ```F1``` key). Then paste ```https://github.com/sharcnet/vscode-hpc.git``` and hit ```Enter```.
+Just run *VSCode* on the system that you work on it and then select ```Clone Git Repository...``` from ```Get Started``` page or type ```git: clone``` in the *command palette* (```CTRL+SHIFT+p``` or ```F1``` key). Then paste ```https://github.com/sharcnet/vscode-hpc.git``` and hit ```Enter```.
