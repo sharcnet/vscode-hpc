@@ -6,7 +6,7 @@ import math
 
 from time import perf_counter
 
-n_tosses = 1000000
+n_tosses = 10000
 
 #<---- start timing
 start = perf_counter()
@@ -38,10 +38,8 @@ plot.scatter(circle_x, circle_y, marker='.', color='red')
 
 x = np.linspace(0, 1, 100)
 y = np.sqrt(1 - x**2)
-
 plot.plot(x, y, color='black')
 
 plot.set_aspect(1.0)
 
-plt.rcParams['figure.figsize'] = [20, 20]
 plt.show()
