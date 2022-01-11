@@ -1,12 +1,14 @@
 # vscode-hpc
 This is a sample code accompanying SHARCNET General Interest Seminar entitled: *Remote Development on HPC Clusters with VSCode* that will be presented on [January 12, 2022 at 12pm EST](https://sharcnet-ca.zoom.us/meeting/register/tZMkcumprTgrEt3bnKf55GgrgsGqFEvPrqMx). You can find a recorded version of the talk on the [SHARCNET YouTube channel](https://youtube.sharcnet.ca) usually one or two days later.
 
-## Prerequisites
+## The setup
 
-* [Visual Studio Code](https://code.visualstudio.com/) on the system that you work on it along with the following extensions:
+* [Visual Studio Code (VSCode)](https://code.visualstudio.com/) on the system that you work on it along with the following extensions:
     - [C/C++ Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack)
     - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-    - [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+        * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+        * [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) (*optional dependency*)
+        * [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode) (*optional*)
     - [Nsight Visual Studio Code Edition](https://marketplace.visualstudio.com/items?itemName=NVIDIA.nsight-vscode-edition)
     - [Makefile Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools) (*optional*)
     - [GitHub Pull Requests and Issues](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) (*optional*)
