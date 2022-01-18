@@ -49,4 +49,4 @@ On Windows systems, if you want to do both local development on *Windows* and re
 * [CUDA toolkit](https://developer.nvidia.com/nvidia-cuda-toolkit-developer-tools-mac-hosts) for *macOS*
 
 ## Get started
-Just run *VSCode* on the system that you work on it and then select ```Clone Git Repository...``` from ```Get Started``` page or type ```git: clone``` in the *command palette* (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd>  or <kbd>F1</kbd> key). Then paste ```https://github.com/sharcnet/vscode-hpc.git``` and hit ```Enter```.
+Just run *VSCode* on the system that you work on it and then select ```Clone Git Repository...``` from ```Get Started``` page or type ```git: clone``` in the *command palette* (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> or <kbd>F1</kbd>). Then paste ```https://github.com/sharcnet/vscode-hpc.git``` and hit ```Enter```.
