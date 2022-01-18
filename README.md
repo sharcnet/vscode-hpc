@@ -1,5 +1,5 @@
 # vscode-hpc
-This is a sample code accompanying SHARCNET General Interest Seminar entitled: *Remote Development on HPC Clusters with VSCode* that will be presented on [January 12, 2022 at 12pm EST](https://sharcnet-ca.zoom.us/meeting/register/tZMkcumprTgrEt3bnKf55GgrgsGqFEvPrqMx). You can find a recorded version of the talk on the [SHARCNET YouTube channel](https://youtube.sharcnet.ca) usually one or two days later.
+This is a sample code accompanying SHARCNET General Interest Seminar entitled: *Remote Development on HPC Clusters with VSCode*. You can find a recorded version of the talk on the [SHARCNET YouTube channel](https://www.youtube.com/watch?v=u9k6HikDyqk).
 
 ## The setup
 
@@ -49,4 +49,4 @@ On Windows systems, if you want to do both local development on *Windows* and re
 * [CUDA toolkit](https://developer.nvidia.com/nvidia-cuda-toolkit-developer-tools-mac-hosts) for *macOS*
 
 ## Get started
-Just run *VSCode* on the system that you work on it and then select ```Clone Git Repository...``` from ```Get Started``` page or type ```git: clone``` in the *command palette* (```CTRL+SHIFT+p``` or ```F1``` key). Then paste ```https://github.com/sharcnet/vscode-hpc.git``` and hit ```Enter```.
+Just run *VSCode* on the system that you work on it and then select ```Clone Git Repository...``` from ```Get Started``` page or type ```git: clone``` in the *command palette* (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>p</kbd>  or <kbd>F1</kbd> key). Then paste ```https://github.com/sharcnet/vscode-hpc.git``` and hit ```Enter```.
