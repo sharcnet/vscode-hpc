@@ -19,7 +19,7 @@ And the followings on the platform(s) that you want to do either *local* or *rem
 For remote development on *Compute Canada* clusters, the following ```module``` command will do the trick but often you have to add it at the end of your ```~/.bashrc``` file:
 
 ```
-module load cmake cuda scipy-stack/2020a ipykernel
+module load cmake cuda scipy-stack/2022a ipykernel
 ```
 ### Linux
 * C++ compiler supporting the ```C++14``` standard (e.g. ```gcc``` 9.3)
