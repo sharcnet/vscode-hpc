@@ -15,8 +15,10 @@ This is a sample code accompanying SHARCNET General Interest Seminar entitled: *
     - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) (*optional*)
 
 And the followings on the platform(s) that you want to do either *local* or *remote* development:
-### Compute Canada Clusters
-For remote development on *Compute Canada* clusters, the following ```module``` command will do the trick but often you have to add it at the end of your ```~/.bashrc``` file:
+### The Alliance Clusters
+For remote development on the
+[Digital Research Alliance of Canada (the Alliance)](https://alliancecan.ca)
+clusters, the following ```module``` command will do the trick but often you have to add it at the end of your ```~/.bashrc``` file:
 
 ```
 module load cmake cuda scipy-stack/2022a ipykernel
