@@ -1,5 +1,8 @@
 # vscode-hpc
-This is a sample code accompanying SHARCNET General Interest Seminar entitled: *Remote Development on HPC Clusters with VSCode*. You can find a recorded version of the talk on the [SHARCNET YouTube channel](https://www.youtube.com/watch?v=u9k6HikDyqk).
+This is a sample code accompanying SHARCNET General Interest Seminars entitled: *Remote Development on HPC Clusters with VSCode*. You can find recorded versions of the talks on the [SHARCNET YouTube channel](https://youtube.sharcnet.ca):
+
+* [Part I](https://www.youtube.com/watch?v=u9k6HikDyqk)
+* [Part II](https://www.youtube.com/watch?v=CsgBGpampvc)
 
 ## The setup
 
